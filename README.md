@@ -64,7 +64,7 @@ gigscore/
 ├── docs/          # Documentation and architecture
 └── README.md
 Team HackMatrix
-Shreesha Kumar P — AI/ML Lead & Product Architecture
+Shreesha Kumar P — AI/ML  & Product Architecture
 
 Chethan — Backend & API Engineering
 
