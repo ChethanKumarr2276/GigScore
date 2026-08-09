@@ -1,0 +1,19 @@
+{
+  "model": "XGBoost",
+  "roc_auc": 0.5493,
+  "ks": 0.16,
+  "precision": 0.3333,
+  "recall": 0.16,
+  "f1": 0.2162,
+  "accuracy": 0.71,
+  "confusion_matrix": [
+    [
+      67,
+      8
+    ],
+    [
+      21,
+      4
+    ]
+  ]
+}
