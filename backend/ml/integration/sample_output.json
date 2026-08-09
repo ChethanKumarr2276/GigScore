@@ -1,0 +1,34 @@
+{
+  "gigtrust_id": "GT-DLI-2026-AJI0Y",
+  "grs": 901,
+  "grs_band": "PRIME",
+  "financial_assessment": "Exceptional",
+  "default_probability": 0.0058,
+  "approval_probability": 0.4715,
+  "max_amount": 103100,
+  "interest_rate": 13.0,
+  "evidence_quality": "High",
+  "top_5_reasons": [
+    "Verified identity and documents",
+    "No fraud indicators",
+    "Timely bill payments",
+    "High completion rate",
+    "Strong customer ratings"
+  ],
+  "worker_summary": "Your GigScore of 901 (PRIME) reflects exceptional financial stability with high evidence quality. Estimated repayment risk: 1%.",
+  "lender_summary": "Worker GRS: 901 (PRIME) | Evidence quality: High | PD: 0.6% | P(Approve): 47.1%. Indicative offer: up to \u20b9103,100 at 13.0% p.a.",
+  "coaching_actions": [
+    "Diversify income sources across multiple platforms",
+    "Keep EMI burden below 30% of monthly income",
+    "Maintain active working days above 20 per month"
+  ],
+  "fraud_flag": false,
+  "pillar_scores": {
+    "earning": 0.6614,
+    "continuity": 0.8817,
+    "service": 0.915,
+    "financial": 0.8057,
+    "integrity": 1.0
+  },
+  "model_version": "2.0.0-sprint7"
+}
