@@ -1,0 +1,264 @@
+{
+  "version": "2.0.0",
+  "description": "Canonical feature schema for GigScore. Shared contract between M1, M2, and M3 pipelines.",
+  "feature_groups": {
+    "income": {
+      "description": "Income volume, stability, and trend derived from Account Aggregator transaction data.",
+      "features": {
+        "monthly_income_avg": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "INR",
+          "description": "3-month rolling average of net credited income across all platforms.",
+          "source": "AA"
+        },
+        "monthly_income_std": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "INR",
+          "description": "Standard deviation of monthly net income over the last 3 months.",
+          "source": "AA"
+        },
+        "income_volatility": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "ratio",
+          "description": "Coefficient of variation of monthly income (monthly_income_std / monthly_income_avg). High values indicate unstable earnings.",
+          "source": "AA"
+        },
+        "income_growth_rate": {
+          "type": "float",
+          "nullable": true,
+          "unit": "ratio",
+          "description": "Month-over-month income growth rate. Null if fewer than 2 months of data are available.",
+          "source": "AA"
+        },
+        "income_trend": {
+          "type": "float",
+          "nullable": true,
+          "unit": "INR/month",
+          "description": "OLS slope of monthly income over the last 6 months. Positive indicates growing income.",
+          "source": "AA"
+        },
+        "income_per_active_day": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "INR",
+          "description": "Average income earned per day on which at least one gig was completed.",
+          "source": "AA"
+        }
+      }
+    },
+    "activity": {
+      "description": "Platform engagement and work regularity metrics.",
+      "features": {
+        "active_day_ratio": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Fraction of calendar days with at least one completed gig in the last 90 days.",
+          "source": "AA"
+        },
+        "active_days_per_month": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "max": 31,
+          "unit": "days",
+          "description": "Average number of active working days per calendar month over the last 90 days.",
+          "source": "AA"
+        },
+        "longest_inactive_gap": {
+          "type": "int",
+          "nullable": false,
+          "min": 0,
+          "unit": "days",
+          "description": "Longest continuous streak of days with no gig activity in the last 90 days.",
+          "source": "AA"
+        },
+        "platform_tenure_months": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "months",
+          "description": "Number of months since the worker's first verified transaction on any linked platform.",
+          "source": "AA"
+        },
+        "gigs_per_week": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "count/week",
+          "description": "Average number of completed gigs per calendar week over the last 90 days.",
+          "source": "AA"
+        },
+        "multi_platform_count": {
+          "type": "int",
+          "nullable": false,
+          "min": 1,
+          "unit": "count",
+          "description": "Number of distinct gig platforms on which the worker has earned income in the last 90 days.",
+          "source": "AA"
+        }
+      }
+    },
+    "service_quality": {
+      "description": "Customer satisfaction and delivery reliability signals from platform APIs.",
+      "features": {
+        "average_rating": {
+          "type": "float",
+          "nullable": true,
+          "min": 1,
+          "max": 5,
+          "unit": "score",
+          "description": "Weighted average customer rating across all platforms on a 1–5 scale. Null if no ratings are available.",
+          "source": "Future Platform API"
+        },
+        "rating_trend": {
+          "type": "float",
+          "nullable": true,
+          "unit": "score/month",
+          "description": "OLS slope of monthly average rating over the last 6 months. Null if fewer than 2 months of ratings exist.",
+          "source": "Future Platform API"
+        },
+        "completion_rate": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Fraction of accepted gigs completed successfully (not cancelled after acceptance).",
+          "source": "Future Platform API"
+        },
+        "cancellation_rate": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Fraction of accepted gigs cancelled by the worker before completion.",
+          "source": "Future Platform API"
+        },
+        "acceptance_rate": {
+          "type": "float",
+          "nullable": true,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Fraction of offered gigs accepted by the worker. Null if platform does not expose offer data.",
+          "source": "Future Platform API"
+        },
+        "on_time_rate": {
+          "type": "float",
+          "nullable": true,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Fraction of completed gigs delivered within the committed time window.",
+          "source": "Future Platform API"
+        }
+      }
+    },
+    "financial_health": {
+      "description": "Debt burden, cash-flow stability, and banking behaviour from AA and bureau data.",
+      "features": {
+        "existing_emi": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "INR",
+          "description": "Total monthly EMI outflows across all active loans.",
+          "source": "Bureau"
+        },
+        "emi_ratio": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "ratio",
+          "description": "Existing EMI obligations divided by monthly_income_avg. Values above 0.5 indicate high debt burden.",
+          "source": "AA"
+        },
+        "bill_payment_ratio": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Fraction of utility and subscription bills paid on time in the last 6 months.",
+          "source": "AA"
+        },
+        "cash_flow_stability": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "max": 1,
+          "unit": "ratio",
+          "description": "Ratio of months with positive net cash flow (credits > debits) in the last 6 months.",
+          "source": "AA"
+        },
+        "balance_volatility": {
+          "type": "float",
+          "nullable": false,
+          "min": 0,
+          "unit": "INR",
+          "description": "Standard deviation of daily closing bank balance over the last 90 days.",
+          "source": "AA"
+        },
+        "average_month_end_balance": {
+          "type": "float",
+          "nullable": false,
+          "unit": "INR",
+          "description": "Average bank balance on the last day of each month over the last 3 months. May be negative.",
+          "source": "AA"
+        }
+      }
+    },
+    "risk_integrity": {
+      "description": "Fraud, identity verification, and regulatory risk signals.",
+      "features": {
+        "penalty_events": {
+          "type": "int",
+          "nullable": false,
+          "min": 0,
+          "unit": "count",
+          "description": "Number of platform-issued penalties or suspensions in the last 12 months.",
+          "source": "Future Platform API"
+        },
+        "chargebacks": {
+          "type": "int",
+          "nullable": false,
+          "min": 0,
+          "unit": "count",
+          "description": "Number of successful customer chargebacks against the worker in the last 12 months.",
+          "source": "Future Platform API"
+        },
+        "fraud_indicators": {
+          "type": "int",
+          "nullable": false,
+          "min": 0,
+          "unit": "count",
+          "description": "Number of transactions flagged as anomalous by the AA fraud detection layer in the assessment window.",
+          "source": "AA"
+        },
+        "identity_verified": {
+          "type": "bool",
+          "nullable": false,
+          "description": "True if government-issued identity (Aadhaar / PAN) has been successfully verified via DigiLocker.",
+          "source": "Self-declared"
+        },
+        "document_verified": {
+          "type": "bool",
+          "nullable": false,
+          "description": "True if all required income and banking documents have passed automated verification.",
+          "source": "Self-declared"
+        }
+      }
+    }
+  }
+}
