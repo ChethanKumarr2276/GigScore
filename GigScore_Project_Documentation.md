@@ -18,6 +18,7 @@
 - **Live Deployed Link:** https://gig-score-two.vercel.app
 - **Live Backend API:** https://gigscore.onrender.com/docs
 - **Demo Video Link:** *[to be added]*
+- **Presentation Link:** *[to be added]*
 
 ---
 
