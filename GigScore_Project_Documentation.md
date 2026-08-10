@@ -17,7 +17,7 @@
 - **GitHub Repository:** https://github.com/ChethanKumarr2276/GigScore
 - **Live Deployed Link:** https://gig-score-two.vercel.app
 - **Live Backend API:** https://gigscore.onrender.com/docs
-- **Demo Video Link:** *[to be added]*
+- **Demo Video Link:** https://drive.google.com/drive/folders/1hXNiXe7-FeAP8eB6y8Lb6c7f7BC9GCwx?usp=sharing
 - **Presentation Link:** *[to be added]*
 
 ---
