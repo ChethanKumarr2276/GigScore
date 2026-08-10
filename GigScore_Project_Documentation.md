@@ -6,7 +6,7 @@
 |---|---|
 | **Team Name** | Victus |
 | **Team Leader** | Shraddha Shetty GR |
-| **Contact** | +91 80881 63936 |
+| **Contact** | +91 90715 53376 |
 | **Event Name** | HackMatrix 2026 — Round 2 |
 | **Problem Statement** | AI-powered micro-credit assessment for gig workers lacking formal credit history |
 
