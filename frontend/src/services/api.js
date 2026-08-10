@@ -98,7 +98,7 @@ export function setActiveDemoProfile(key) {
  */
 async function apiRequest(endpoint, options = {}, mockFallback = null) {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 5000);
+  const timeoutId = setTimeout(() => controller.abort(), 20000);
 
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
