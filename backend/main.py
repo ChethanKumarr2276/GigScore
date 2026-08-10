@@ -24,7 +24,8 @@ app = FastAPI(
 # --- CORS: allow the frontend (Vite dev server) to call this API ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173",
+    "https://gig-score-two.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
